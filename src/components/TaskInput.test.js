@@ -1,7 +1,7 @@
 import React from 'react'
 
-import TaskInput from './TaskInput';
-import {render, screen} from '@testing-library/react'
+import TaskInput from './TaskInput.bak';
+import {fireEvent, render, screen, wait} from '@testing-library/react'
 
 
 describe('<TaskInput />', () => {
@@ -9,4 +9,13 @@ describe('<TaskInput />', () => {
         render(<TaskInput />);
         expect(screen.queryByPlaceholderText('Enter new task')).toBeInTheDocument();
     });
+
+    it('fires onSubmit callback', async () => {
+        const mockOnSubmit = jest.fn();
+        render(<TaskInput onSubmit={mockOnSubmit} />);
+        const inputNode = screen.getByPlaceholderText('Enter new task');
+        fireEvent.change(inputNode, {target: {value: 'new task!'}});
+        fireEvent.submit(inputNode);
+        await wait(() => expect(mockOnSubmit).toHaveBeenCalledWith('new task!'));
+    })
 });
