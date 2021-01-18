@@ -1,7 +1,7 @@
 import React from 'react'
 
 import Task from './Task';
-import {render, screen} from '@testing-library/react'
+import {render, screen, fireEvent} from '@testing-library/react'
 
 
 describe('<Task />', () => {
@@ -25,5 +25,12 @@ describe('<Task />', () => {
 
         render(<Task task={uncompletedTask} />);
         expect(screen.getByText(uncompletedTask.label)).not.toHaveClass('completed');
+    });
+
+    it('fires onToggle callback', () => {
+        const mockOnToggle = jest.fn();
+        render(<Task task={completedTask} onToggle={mockOnToggle} />);
+        fireEvent.click(screen.getByText(completedTask.label));
+        expect(mockOnToggle).toHaveBeenCalled();
     });
 });
