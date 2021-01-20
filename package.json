@@ -6,6 +6,7 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
+    "json-server": "^0.16.3",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "react-scripts": "3.4.3"
@@ -15,7 +16,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "integration-tests": "jest integration-tests"
+    "integration-tests": "jest integration-tests",
+    "json-server": "json-server --watch db.json"
   },
   "eslintConfig": {
     "extends": "react-app"
