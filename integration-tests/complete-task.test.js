@@ -32,11 +32,14 @@ test('should complete tasks', async  () => {
     await task.click();
 
     // Check that it completed
+    await driver.wait(until.elementLocated(By.xpath("//*[text()='Task 2' and contains(@class, 'completed')]")));
     expect(await task.getAttribute('class')).toMatch(/completed/);
+
 
     // Uncomplete task
     await task.click();
 
     // Check that it uncompleted
+    await driver.wait(until.elementLocated(By.xpath("//*[text()='Task 2' and not(contains(@class, 'completed'))]")));
     expect(await task.getAttribute('class')).not.toMatch(/completed/);
 });
