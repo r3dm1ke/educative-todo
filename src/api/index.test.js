@@ -1,6 +1,18 @@
 import {createTask, getTasks, updateTask} from './index';
 
-// test for createTask here
+describe('#createTask', () => {
+    it('must create tasks', async () => {
+        fetch.mockResponseOnce(JSON.stringify({id: 1, label: 'Do this', completed: false}));
+
+        const result = await createTask('Do this');
+
+        expect(result).toEqual({id: 1, label: 'Do this', completed: false});
+        expect(fetch).toHaveBeenCalledWith(expect.stringMatching(/tasks/), {
+            method: 'POST',
+            body: JSON.stringify({label: 'Do this', completed: false})
+        });
+    });
+});
 
 describe('#updateTask', () => {
     it('must update tasks', async () => {
