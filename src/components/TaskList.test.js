@@ -15,6 +15,10 @@ describe('<TaskList />', () => {
         expect(renderedTasks.length).toBe(3);
     });
 
+    it('must render successfully with no tasks', () => {
+        render(<TaskList />);
+    });
+
     it('must fire on toggle callback', () => {
         const tasks = [
             {label: 'Do this', completed: false},

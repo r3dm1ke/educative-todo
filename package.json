@@ -18,7 +18,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "integration-tests": "jest integration-tests",
+    "integration-tests": "reset-db.sh && jest integration-tests && reset-db.sh",
     "json-server": "json-server --watch db.json --port 3001"
   },
   "eslintConfig": {
